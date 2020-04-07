@@ -27,7 +27,7 @@ Users can use QueueRhythm in small groups or by themselves. The private option a
 
 **Required Must-have Stories**
 
-* User logs in to access current playlist and mediaplayer/home-screen
+* User can access current playlist and mediaplayer/home-screen
 
 * User seraches music on spotify then adds to playlist.
 
