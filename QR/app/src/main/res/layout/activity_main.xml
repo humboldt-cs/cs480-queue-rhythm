@@ -6,25 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/ivQAlbum"
+    <TextView
+        android:id="@+id/tvTitleS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="59dp"
-        android:contentDescription="albumCover"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/tvQSongTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="54dp"
-        android:layout_toEndOf="@+id/ivQAlbum"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="119dp"
         android:text="Song Title"
         android:textSize="20sp"
         tools:text="Song Title" />
@@ -33,10 +22,10 @@
         android:id="@+id/tvArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvQSongTitle"
-        android:layout_marginStart="18dp"
+        android:layout_below="@+id/tvTitleS"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="6dp"
-        android:layout_toEndOf="@+id/ivQAlbum"
         android:text="Artist Name"
         android:textSize="14sp"
         tools:text="Artist Name" />
@@ -47,10 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
         android:text="Welcome User"
-        android:textSize="20sp"
+        android:textSize="24sp"
         tools:text="Welcome User" />
 
     <SeekBar
@@ -58,44 +47,59 @@
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvQAlbumName"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/ivQAlbum"
+        android:layout_below="@+id/tvAlbum"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="3dp"
         android:max="10"
         android:progress="3" />
 
     <TextView
-        android:id="@+id/tvQAlbumName"
+        android:id="@+id/tvAlbum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvArtist"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/ivQAlbum"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="7dp"
         android:text="Album Name"
         tools:text="Album Name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvQueue"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="175dp"
         android:layout_below="@+id/sbSeek"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="15dp">
+        android:layout_marginTop="4dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUsers"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="175dp"
         android:layout_below="@+id/rvQueue"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:id="@+id/tvQueueName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvWelcome"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="12dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="3dp"
+        android:text="QueueName"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btnTempMediaNav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvUsers"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="27dp"
+        android:text="Temporary Media Nav" />
 
 </RelativeLayout>

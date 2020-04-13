@@ -22,6 +22,8 @@ import com.spotify.protocol.types.Track;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.view.View;
 
 import android.util.Log;
 import java.util.ArrayList;
@@ -31,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
     List<Song> songList;
     List<Song> userList;
-    ImageView albumCover;
+    TextView queueName;
     TextView songTitle;
     TextView artistName;
     TextView albumName;
     TextView welcomeMessage;
     SeekBar seekBar;
+    Button btnTemp;
 
     private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
     private static final String REDIRECT_URI = "http://localhost:8888/callback";
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
 
-        albumCover = findViewById(R.id.ivQAlbum);
+        queueName = findViewById(R.id.tvQueueName);
         songTitle = findViewById(R.id.tvQSongTitle);
         artistName = findViewById(R.id.tvArtist);
         albumName = findViewById(R.id.tvQAlbumName);
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.sbSeek);
         RecyclerView rvSongs = findViewById(R.id.rvQueue);
         RecyclerView rvUsers = findViewById(R.id.rvUsers);
-
+        btnTemp = findViewById(R.id.btnTempMediaNav);
         songList = new ArrayList<>();
 
         songList.add(new Song("Album Cover","Song title", "Artist", "Album"));
@@ -84,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
         rvUsers.setAdapter(songAdapter);
         rvUsers.setLayoutManager(new LinearLayoutManager(this));
 
+        btnTemp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,QueueActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
