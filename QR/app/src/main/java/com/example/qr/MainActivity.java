@@ -14,6 +14,7 @@ import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.spotify.android.appremote.api.PlayerApi;
 
 import com.spotify.protocol.client.Subscription;
 import com.spotify.protocol.types.PlayerState;
@@ -90,10 +91,13 @@ public class MainActivity extends AppCompatActivity {
         btnTemp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this,QueueActivity.class);
-                startActivity(intent);
+
+                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
+                //Intent intent = new Intent(MainActivity.this,QueueActivity.class);
+                //startActivity(intent);
             }
         });
+
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -124,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+
+        SpotifyAppRemote.disconnect(mSpotifyAppRemote);
+
         ConnectionParams connectionParams =
                 new ConnectionParams.Builder(CLIENT_ID)
                         .setRedirectUri(REDIRECT_URI)
@@ -152,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void connected() {
-        mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
+
     }
 
     @Override

@@ -16,7 +16,6 @@ import java.util.List;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
     Context context;
-    //ArrayList<Music> musicList;
     List<Song> songList;
     Boolean active = true;
 
