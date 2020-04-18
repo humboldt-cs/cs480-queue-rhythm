@@ -23,16 +23,18 @@ public class MainActivity extends AppCompatActivity {
     Button btnPlay;
     MediaPlayer mediaPlayer;
     Context context;
-    Boolean active = true;
+    Boolean active = false;
     ArrayAdapter arrayAdapter;
     PlayerAdapter adapter;
+    RecyclerView rvMusic;
+    Music music;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getIds();
         RecyclerView rvMusic = findViewById(R.id.rvMusic);
 
 
@@ -73,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    public void getIds(){
+        rvMusic = findViewById(R.id.rvMusic);
+        btnPlay=findViewById(R.id.btnPlay);
+        //sb = findViewById(R.id.progress);
+    }
 
 }
