@@ -3,22 +3,16 @@ package com.example.qr;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.SeekBar;
 
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
-import com.spotify.sdk.android.authentication.AuthenticationRequest.Builder;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
-import com.spotify.android.appremote.api.PlayerApi;
-
-import com.spotify.protocol.client.Subscription;
-import com.spotify.protocol.types.PlayerState;
-import com.spotify.protocol.types.Track;
 
 import android.content.Intent;
 
@@ -43,12 +37,14 @@ public class MainActivity extends AppCompatActivity {
     Button btnTemp;
 
     private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
-    private static final String REDIRECT_URI = "http://localhost:8888/callback";
+    private static final String REDIRECT_URI = "http://qr.example.com";
     private SpotifyAppRemote mSpotifyAppRemote;
-
-
-
     private static final int REQUEST_CODE = 1337;
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         AuthenticationRequest.Builder builder =
                 new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
-        builder.setScopes(new String[]{"app-remote-control"});
+        builder.setScopes(new String[]{"app-remote-control","playlist-modify-public","user-read-currently-playing","user-modify-playback-state"});
         AuthenticationRequest request = builder.build();
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
@@ -92,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
-                //Intent intent = new Intent(MainActivity.this,QueueActivity.class);
-                //startActivity(intent);
+               // mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
+                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -144,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onConnected(SpotifyAppRemote spotifyAppRemote) {
                         mSpotifyAppRemote = spotifyAppRemote;
                         Log.d("MainActivity", "Connected! Yay!");
+
 
                         // Now you can start interacting with App Remote
                         connected();

@@ -3,10 +3,19 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
-
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
     defaultConfig {
         applicationId "com.example.qr"
-        minSdkVersion 21
+        minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -25,6 +34,7 @@ android {
     }
     repositories {
         mavenCentral()
+        maven { url "https://jitpack.io"}
         flatDir {
             dirs 'libs'
         }
@@ -33,6 +43,8 @@ android {
 }
 
 dependencies {
+
+    implementation 'se.michaelthelin.spotify:spotify-web-api-java:5.0.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -46,8 +58,7 @@ dependencies {
     implementation project(':spotify-app-remote-release-0.7.0')
     implementation "com.google.code.gson:gson:2.8.5"
 
-    implementation 'com.spotify.android:auth:1.1.0' // Maven dependency
-
-    // All other dependencies for your app should also be here:
+    implementation 'com.spotify.android:auth:1.1.0'
     implementation 'androidx.browser:browser:1.0.0'
+
 }

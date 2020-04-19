@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="119dp"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="24dp"
         android:text="Song Title"
         android:textSize="20sp"
         tools:text="Song Title" />
@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitleS"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="206dp"
+        android:layout_marginTop="7dp"
         android:text="Artist Name"
         android:textSize="14sp"
         tools:text="Artist Name" />
@@ -37,7 +37,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="19dp"
         android:text="Welcome User"
         android:textSize="24sp"
         tools:text="Welcome User" />
@@ -49,8 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvAlbum"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="4dp"
         android:max="10"
         android:progress="3" />
 
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvArtist"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="23dp"
+        android:layout_marginStart="207dp"
         android:layout_marginTop="7dp"
         android:text="Album Name"
         tools:text="Album Name" />
@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="175dp"
         android:layout_below="@+id/sbSeek"
-        android:layout_marginTop="4dp">
+        android:layout_marginTop="39dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="175dp"
         android:layout_below="@+id/rvQueue"
-        android:layout_marginTop="18dp" />
+        android:layout_marginTop="19dp" />
 
     <TextView
         android:id="@+id/tvQueueName"
@@ -87,8 +87,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvWelcome"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="QueueName"
         android:textSize="22sp" />
 
@@ -98,8 +98,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rvUsers"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="98dp"
         android:text="Temporary Media Nav" />
 
 </RelativeLayout>
