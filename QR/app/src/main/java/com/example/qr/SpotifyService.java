@@ -1,7 +1,21 @@
 package com.example.qr;
 
 public class SpotifyService {
-/*
+ /*   private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
+    private static final String REDIRECT_URI = "http://qr.example.com";
+    private static final int REQUEST_CODE = 1337;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+    AuthenticationRequest.Builder builder =
+            new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
+    builder.setScopes(new String[]{"app-remote-control","playlist-modify-public","user-read-currently-playing","user-modify-playback-state"});
+    AuthenticationRequest request = builder.build();
+
+    AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+    }
+
     private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
     private static final String REDIRECT_URI = "http://qr.example.com";
 

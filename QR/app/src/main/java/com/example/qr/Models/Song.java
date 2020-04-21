@@ -1,4 +1,4 @@
-package com.example.qr;
+package com.example.qr.Models;
 
 public class Song {
     public static String albumCover;

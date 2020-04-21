@@ -84,4 +84,15 @@
         android:layout_height="220dp"
         android:layout_below="@+id/ivPlay"
         android:layout_marginTop="28dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-3dp"
+        android:background="#FFFFFF"
+        app:itemIconSize="40sp"
+        app:itemIconTint="@color/design_default_color_secondary_variant"
+        app:menu="@menu/menu_bottom_nav" />
 </RelativeLayout>

@@ -9,6 +9,12 @@ import android.widget.ArrayAdapter;
 import android.view.View;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+import android.view.MenuItem;
+
+import android.content.Intent;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class SearchActivity extends MainActivity{
     EditText etSongSearch;
@@ -29,6 +35,28 @@ public class SearchActivity extends MainActivity{
         spinnerSearchType.setAdapter(adapter);
         rvSearchedSongs = findViewById(R.id.rvSearchedSongs);
 
+        btmNav = findViewById(R.id.bottomNav);
+
+        btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.searchIcon:
+                        /*  Intent intent = new Intent(SearchActivity.this,SearchActivity.class);
+                        startActivity(intent); */
+                        return true;
+                    case R.id.homeIcon:
+                        Intent intenttwo = new Intent(SearchActivity.this,MainActivity.class);
+                        startActivity(intenttwo);
+                        return true;
+                    case R.id.playIcon:
+                        Intent intentthree = new Intent(SearchActivity.this,QueueActivity.class);
+                        startActivity(intentthree);
+                        return true;
+                    default: return true;
+                }
+            }
+        });
 
 
     }

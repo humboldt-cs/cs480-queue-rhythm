@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.SeekBar;
 
+import com.example.qr.Models.Song;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.NonNull;
+import android.view.MenuItem;
 
 import android.content.Intent;
 
@@ -34,17 +38,12 @@ public class MainActivity extends AppCompatActivity {
     TextView albumName;
     TextView welcomeMessage;
     SeekBar seekBar;
-    Button btnTemp;
+    BottomNavigationView btmNav;
 
     private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
     private static final String REDIRECT_URI = "http://qr.example.com";
-    private SpotifyAppRemote mSpotifyAppRemote;
+    protected SpotifyAppRemote mSpotifyAppRemote;
     private static final int REQUEST_CODE = 1337;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +65,29 @@ public class MainActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.sbSeek);
         RecyclerView rvSongs = findViewById(R.id.rvQueue);
         RecyclerView rvUsers = findViewById(R.id.rvUsers);
-        btnTemp = findViewById(R.id.btnTempMediaNav);
+        btmNav = findViewById(R.id.bottomNav);
+
+        btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.searchIcon:
+                        Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.homeIcon:
+                        //stay home
+                        return true;
+                    case R.id.playIcon:
+                        Intent intenttwo = new Intent(MainActivity.this,QueueActivity.class);
+                        startActivity(intenttwo);
+                        return true;
+                    default: return true;
+                }
+            }
+        });
         songList = new ArrayList<>();
+
 
         songList.add(new Song("Album Cover","Song title", "Artist", "Album"));
         songList.add(new Song("Album Cover","Song title", "Artist", "Album"));
@@ -84,15 +104,7 @@ public class MainActivity extends AppCompatActivity {
         rvUsers.setAdapter(songAdapter);
         rvUsers.setLayoutManager(new LinearLayoutManager(this));
 
-        btnTemp.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
 
-               // mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
-                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
