@@ -1,0 +1,2 @@
+rootProject.name='QR'
+include ':app', ':spotify-app-remote-release-0.7.0', ':spotify-auth-release-1.2.1'
