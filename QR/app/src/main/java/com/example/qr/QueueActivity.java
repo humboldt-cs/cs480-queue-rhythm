@@ -66,8 +66,15 @@ public class QueueActivity extends MainActivity {
         ivPlay.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
+                SpotifyService.mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
 
+            }
+        });
+
+        ivPause.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                SpotifyService.mSpotifyAppRemote.getPlayerApi().pause();
             }
         });
     }
