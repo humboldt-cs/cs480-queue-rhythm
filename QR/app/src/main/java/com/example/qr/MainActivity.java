@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
+            //SpotifyAppRemote
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.searchIcon:
