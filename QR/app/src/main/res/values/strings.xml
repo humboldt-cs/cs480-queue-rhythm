@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">QR</string>
+
+    <string-array name="searchType">
+        <item>Artist</item>
+        <item>Album</item>
+        <item>Playlist</item>
+        <item>Track</item>
+        <item>Show</item>
+        <item>Episode</item>
+    </string-array>
+
+</resources>
