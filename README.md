@@ -153,3 +153,5 @@ Users can use QueueRhythm in small groups or by themselves. The private option a
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+### Additional Github Repos in dependencies
+- https://github.com/spotify/android-sdk
