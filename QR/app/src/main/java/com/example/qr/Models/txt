@@ -1,0 +1,14 @@
+    public Song(String albumCover,String songTitle,String artistName,String albumName){
+        setAlbumCover(albumCover);
+        setSongTitle(songTitle);
+        setArtist(artistName);
+        setAlbumName(albumName);
+        setTrack(trackString);
+    }
+
+
+
+    public Song(String id, String name) {
+        this.name = name;
+        this.id = id;
+    }

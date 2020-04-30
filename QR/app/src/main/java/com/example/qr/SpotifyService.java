@@ -37,6 +37,7 @@ public class SpotifyService extends MainActivity {
     private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
     private static final String REDIRECT_URI = "http://qr.example.com";
     private static final int REQUEST_CODE = 1337;
+    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
