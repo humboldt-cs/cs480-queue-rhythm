@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.httpcomponents.client5:httpclient5:5.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents.client5/httpclient5/5.0/f3c57118f6f18543db03d39abcd816e1e2cac65d/httpclient5-5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents.client5/httpclient5/5.0/71a9d2cd0c033c2784007167de4f2c399a17e9d5/httpclient5-5.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents.client5/httpclient5/5.0/533397dfdbaf8f14a8ade020aed1d838fa9f575c/httpclient5-5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
