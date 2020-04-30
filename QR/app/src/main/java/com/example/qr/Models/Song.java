@@ -7,6 +7,8 @@ public class Song {
     public static String albumName;
     public static String trackString;
 
+    private String id;
+    private String name;
 
     public Song(String albumCover,String songTitle,String artistName,String albumName){
         setAlbumCover(albumCover);
@@ -15,6 +17,7 @@ public class Song {
         setAlbumName(albumName);
         setTrack(trackString);
     }
+
 
     public String getAlbumCover() {
         return albumCover;
@@ -42,10 +45,27 @@ public class Song {
         return albumName;
     }
 
-    public void setAlbumName(String name) { this.albumName = name; }
+    public void setAlbumName(String name) {
+        this.albumName = name; }
 
     public String getTrack() { return trackString; }
 
     public void setTrack(String track) { this.trackString = track; }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

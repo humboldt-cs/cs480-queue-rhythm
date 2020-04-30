@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
     BottomNavigationView btmNav;
 
+    private TextView userView;
+    private TextView songView;
+    private Button addBtn;
+    private Song song;
+
+    //private SongService songService;
+    private ArrayList<Song> recentlyPlayedTracks;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
+            //SpotifyAppRemote
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.searchIcon:
@@ -80,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         });
         songList = new ArrayList<>();
 
-
         songList.add(new Song("Album Cover", "Song title", "Artist", "Album"));
         songList.add(new Song("Album Cover", "Song title", "Artist", "Album"));
         songList.add(new Song("Album Cover", "Song title", "Artist", "Album"));
@@ -88,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         songList.add(new Song("Album Cover", "Song title", "Artist", "Album"));
         songList.add(new Song("Album Cover", "Song title", "Artist", "Album"));
 
-        SongAdapter songAdapter = new SongAdapter(this, (ArrayList<Song>) songList);
+         SongAdapter songAdapter = new SongAdapter(this, (ArrayList<Song>) songList);
 
         rvSongs.setAdapter(songAdapter);
         rvSongs.setLayoutManager(new LinearLayoutManager(this));
