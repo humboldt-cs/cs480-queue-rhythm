@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivAlbum"
+        android:layout_width="wrap_content"
+        android:layout_height="143dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="19dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/sbSeeking"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/ivAlbum" />
+
+    <ImageView
+        android:id="@+id/ivPause"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/sbSeeking"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/ivPlay"
+        app:srcCompat="@drawable/icon_next" />
+
+    <TextView
+        android:id="@+id/tvNameAlbum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameArtist"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/ivAlbum"
+        android:text="Album Name"
+        android:textSize="18sp" />
+
+    <SeekBar
+        android:id="@+id/sbSeeking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNameAlbum"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/ivAlbum" />
+
+    <TextView
+        android:id="@+id/tvNameArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSongName"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/ivAlbum"
+        android:text="Artist Name"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvSongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="19dp"
+        android:layout_toEndOf="@+id/ivAlbum"
+        android:text="Song Title"
+        android:textSize="24sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMusic"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_below="@+id/ivPlay"
+        android:layout_marginTop="28dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-3dp"
+        android:background="#FFFFFF"
+        app:itemIconSize="40sp"
+        app:itemIconTint="@color/design_default_color_secondary_variant"
+        app:menu="@menu/menu_bottom_nav" />
+</RelativeLayout>
