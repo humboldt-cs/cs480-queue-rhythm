@@ -23,8 +23,7 @@
         android:layout_below="@+id/sbSeeking"
         android:layout_marginStart="13dp"
         android:layout_marginTop="2dp"
-        android:layout_toEndOf="@+id/ivAlbum"
-        app:srcCompat="@drawable/icon_play" />
+        android:layout_toEndOf="@+id/ivAlbum" />
 
     <ImageView
         android:id="@+id/ivPause"

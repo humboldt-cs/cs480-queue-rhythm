@@ -69,6 +69,7 @@ public class QueueActivity extends MainActivity {
 
         ivAlbum = findViewById(R.id.ivAlbum);
         ivPlay = findViewById(R.id.ivPlay);
+        ivPlay.setBackgroundResource(R.drawable.icon_play);
         ivPause = findViewById(R.id.ivPause);
         tvNameAlbum = findViewById(R.id.tvNameAlbum);
         tvNameArtist = findViewById(R.id.tvNameArtist);
@@ -77,17 +78,22 @@ public class QueueActivity extends MainActivity {
         rvMusic = findViewById(R.id.rvMusic);
 
         String currSong = mPlayer.getPlayerState().toString();
-
-
         ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hasbeenclickedPlay == false && hasbeenclickedPause == true) {
+                if (hasbeenclickedPlay == false & hasbeenclickedPause == true) {
                     mPlayer.resume();
+                    ivPlay.setBackgroundResource(R.drawable.icon_play);
                     hasbeenclickedPause = false;
                     hasbeenclickedPlay = true;
+                } else if (hasbeenclickedPlay == true & hasbeenclickedPause == false) {
+                    ivPlay.setBackgroundResource(R.drawable.icon_pause);
+                    mPlayer.pause();
+                    hasbeenclickedPause = true;
+                    hasbeenclickedPlay = false;
                 } else {
                     mPlayer.play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
+                    hasbeenclickedPlay = true;
                     // Toast.makeText(context, currTrack.getSongTitle(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -95,20 +101,12 @@ public class QueueActivity extends MainActivity {
 
         ivPause.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                if (hasbeenclickedPause == false && hasbeenclickedPlay == true || hasbeenclickedPause == false && hasbeenSkipped == true) {
-                    hasbeenclickedPause = true;
-                    mPlayer.pause();
-
-                }
-                if (hasbeenclickedPause == true && hasbeenclickedPlay == true || hasbeenclickedPause == true && hasbeenSkipped == false) {
-                    hasbeenclickedPlay = false;
-                    hasbeenclickedPause = false;
-                    mPlayer.skipNext();
-                }
-
+            public void onClick(View v) {
+                hasbeenclickedPlay = true;
+                hasbeenclickedPause = false;
+                ivPlay.setBackgroundResource(R.drawable.icon_play);
+                mPlayer.skipNext();
             }
         });
     }
-
 }
