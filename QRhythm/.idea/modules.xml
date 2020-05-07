@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/QueueRhythm.iml" filepath="$PROJECT_DIR$/QueueRhythm.iml" group="QueueRhythm" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="QueueRhythm/app" />
-    </modules>
-  </component>
-</project>

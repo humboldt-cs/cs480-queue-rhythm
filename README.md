@@ -131,17 +131,17 @@ Users can use QueueRhythm in small groups or by themselves. The private option a
 
 ## Wireframes
 
-<img src="QRhythm/handdrawn_Page_1.png" width=600> &nbsp;
-<img src="QRhythm/handdrawn_Page_2.png" width=600> &nbsp;
-<img src="QRhythm/handdrawn_Page_3.png" width=600> <br>
+<img src="extra content/handdrawn_Page_1.png" width=600> &nbsp;
+<img src="extra content/handdrawn_Page_2.png" width=600> &nbsp;
+<img src="extra content/handdrawn_Page_3.png" width=600> <br>
 
 
 ### [BONUS] Digital Wireframes & Mockups
 
-<img src="QRhythm/1 authentication pages.png" width=600> &nbsp;
-<img src="QRhythm/2 queue action pages.png" width=600> &nbsp;
-<img src="QRhythm/3 User Pages.png" width=600> &nbsp;
-<img src="QRhythm/4 Guest Pages.png" width=600> <br>
+<img src="extra content/1 authentication pages.png" width=600> &nbsp;
+<img src="extra content/2 queue action pages.png" width=600> &nbsp;
+<img src="extra content/3 User Pages.png" width=600> &nbsp;
+<img src="extra content/4 Guest Pages.png" width=600> <br>
 
 ### [BONUS] Interactive Prototype
 
