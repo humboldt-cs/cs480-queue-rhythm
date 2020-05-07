@@ -131,7 +131,7 @@ Users can use QueueRhythm in small groups or by themselves. The private option a
 
 ## Wireframes
 
-<img src="extracontent/handdrawn_Page_1.png" width=600> &nbsp;
+<img src="cs480-queue-rhythm/extra content/handdrawn_Page_1.png" width=600> &nbsp;
 <img src="extracontent/handdrawn_Page_2.png" width=600> &nbsp;
 <img src="extracontent/handdrawn_Page_3.png" width=600> <br>
 
