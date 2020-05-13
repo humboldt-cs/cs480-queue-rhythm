@@ -8,14 +8,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.spotify.android.appremote.api.PlayerApi;
-import com.spotify.protocol.client.CallResult;
-import com.spotify.protocol.types.PlayerState;
+import com.wrapper.spotify.model_objects.miscellaneous.CurrentlyPlaying;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class QueueActivity extends MainActivity {
     Context context = QueueActivity.this;
@@ -29,6 +33,7 @@ public class QueueActivity extends MainActivity {
     RecyclerView rvMusic;
     BottomNavigationView btmNav;
     public String currentSong = "spotify:playlist:7KisalzWjJZC8GVSFgZBhF";
+    Call<CurrentlyPlaying> call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +74,19 @@ public class QueueActivity extends MainActivity {
         rvMusic = findViewById(R.id.rvMusic);
 
         PlayerApi mPlayer = SpotifyService.mSpotifyAppRemote.getPlayerApi();
-        CallResult<PlayerState> currSong = mPlayer.getPlayerState();
+       // CallResult<PlayerState> currSong = mPlayer.getPlayerState();
+
         ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (hasbeenclickedPlay==false & hasbeenclickedPause == true) {
                     mPlayer.resume();
                     ivPlay.setBackgroundResource(R.drawable.icon_play);
                     hasbeenclickedPause = false;
                     hasbeenclickedPlay = true;
                 } else if (hasbeenclickedPlay == true & hasbeenclickedPause == false) {
+
                     ivPlay.setBackgroundResource(R.drawable.icon_pause);
                     mPlayer.pause();
                     hasbeenclickedPause = true;
@@ -88,17 +96,40 @@ public class QueueActivity extends MainActivity {
                     hasbeenclickedPlay = true;
                     // Toast.makeText(context, currTrack.getSongTitle(), Toast.LENGTH_SHORT).show();
                 }
+                callCurrentlyPlaying();
             }
+
         });
 
-        ivPause.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                hasbeenclickedPlay = true;
-                hasbeenclickedPause = false;
-                ivPlay.setBackgroundResource(R.drawable.icon_play);
-                mPlayer.skipNext();
-            }
+        ivPause.setOnClickListener(v -> {
+            hasbeenclickedPlay = true;
+            hasbeenclickedPause = false;
+            ivPlay.setBackgroundResource(R.drawable.icon_play);
+            mPlayer.skipNext();
         });
+    }
+
+    protected void callCurrentlyPlaying() {
+        call = SpotifyService.placeHolderApi.currentlyPlaying();
+
+        call.enqueue((new Callback<CurrentlyPlaying>(){
+
+            @Override
+            public void onResponse(Call<CurrentlyPlaying> call, Response<CurrentlyPlaying> response) {
+                if(!response.isSuccessful()) {
+                    Toast.makeText(QueueActivity.this,"Search not successful", Toast.LENGTH_LONG);
+                }
+                CurrentlyPlaying currentlyPlaying = response.body();
+
+                tvSongName.setText(currentlyPlaying.getItem().getName());
+                tvNameAlbum.setText(currentlyPlaying.getItem().getAlbum().getName());
+                //tvNameArtist.setText(currentlyPlaying.getItem().getPreviewUrl());
+            }
+
+            @Override
+            public void onFailure(Call<CurrentlyPlaying> call, Throwable t) {
+
+            }
+        }));
     }
 }

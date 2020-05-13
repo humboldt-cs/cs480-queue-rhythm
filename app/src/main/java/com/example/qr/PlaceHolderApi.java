@@ -1,6 +1,7 @@
 package com.example.qr;
 
 import com.example.qr.Models.Search;
+import com.wrapper.spotify.model_objects.miscellaneous.CurrentlyPlaying;
 
 import java.util.Map;
 
@@ -12,5 +13,8 @@ public interface PlaceHolderApi {
 
   @GET("search")
   Call<Search> searchItem(@QueryMap Map<String,String> params);
+
+  @GET("me/player/currently-playing")
+  Call<CurrentlyPlaying> currentlyPlaying();
 
 }

@@ -2,6 +2,7 @@ package com.example.qr;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -90,6 +91,7 @@ public class SearchActivity extends MainActivity{
                         }
 
                         Search search = response.body();
+
                         SearchAdapter searchAdapter = new SearchAdapter(SearchActivity.this, search);
                         rvSearchedSongs.setAdapter(searchAdapter);
                         rvSearchedSongs.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
@@ -97,7 +99,7 @@ public class SearchActivity extends MainActivity{
 
                     @Override
                     public void onFailure(Call<Search> call, Throwable t) {
-
+                        Log.d("Error",t.getMessage());
                     }
                 }));
             }

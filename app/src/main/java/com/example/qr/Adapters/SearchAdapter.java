@@ -10,11 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.qr.Models.Album;
+import com.example.qr.Models.Artist;
 import com.example.qr.Models.Search;
 import com.example.qr.Models.Track;
 import com.example.qr.R;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>{
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
     Context context;
     Search searchItem;
     Boolean active = true;
@@ -60,14 +62,28 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         }
 
         public void bind(final Object object) {
-            if(object.getClass().toString() == "track") {
+            if (object.getClass().getName() == "artists") {
+                Artist artist = (Artist) object;
+                tvQSongTitle.setText(artist.getName());
+                tvQAlbumName.setText("");
+                tvQArtistName.setText("");
+            }
+
+            if (object.getClass().getName() == "tracks") {
                 Track track = (Track) object;
                 tvQSongTitle.setText(track.getName());
                 tvQAlbumName.setText(track.getAlbum().getName());
                 tvQArtistName.setText(track.getArtists().get(0).getName());
-
-
             }
+
+            if (object.getClass().getName() == "albums") {
+                Album album = (Album) object;
+                tvQSongTitle.setText(album.getName());
+                tvQAlbumName.setText(album.getArtists().get(0).getName());
+                //ivQAlbumCover.setImageURI(album.getImages().get(0).);
+            }
+
         }
     }
+
 }
