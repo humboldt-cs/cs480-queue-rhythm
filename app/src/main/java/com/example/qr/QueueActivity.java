@@ -1,26 +1,21 @@
 package com.example.qr;
 
-import androidx.recyclerview.widget.RecyclerView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.SeekBar;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import android.view.MenuItem;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import android.os.Bundle;
-import com.spotify.protocol.types.PlayerState;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
 import com.spotify.android.appremote.api.PlayerApi;
-
-import android.widget.Toast;
-import com.example.qr.Models.Track;
-
-import android.content.Context;
+import com.spotify.protocol.client.CallResult;
+import com.spotify.protocol.types.PlayerState;
 
 public class QueueActivity extends MainActivity {
     Context context = QueueActivity.this;
@@ -33,16 +28,12 @@ public class QueueActivity extends MainActivity {
     SeekBar skSeeking;
     RecyclerView rvMusic;
     BottomNavigationView btmNav;
-    PlayerState playerState;
-
-    protected PlayerApi mPlayer;
+    public String currentSong = "spotify:playlist:7KisalzWjJZC8GVSFgZBhF";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media);
-
-        mPlayer = SpotifyService.mSpotifyAppRemote.getPlayerApi();
 
         btmNav = findViewById(R.id.bottomNav);
 
@@ -77,11 +68,12 @@ public class QueueActivity extends MainActivity {
         skSeeking = findViewById(R.id.sbSeeking);
         rvMusic = findViewById(R.id.rvMusic);
 
-        String currSong = mPlayer.getPlayerState().toString();
+        PlayerApi mPlayer = SpotifyService.mSpotifyAppRemote.getPlayerApi();
+        CallResult<PlayerState> currSong = mPlayer.getPlayerState();
         ivPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hasbeenclickedPlay == false & hasbeenclickedPause == true) {
+                if (hasbeenclickedPlay==false & hasbeenclickedPause == true) {
                     mPlayer.resume();
                     ivPlay.setBackgroundResource(R.drawable.icon_play);
                     hasbeenclickedPause = false;
@@ -92,7 +84,7 @@ public class QueueActivity extends MainActivity {
                     hasbeenclickedPause = true;
                     hasbeenclickedPlay = false;
                 } else {
-                    mPlayer.play("spotify:playlist:7KisalzWjJZC8GVSFgZBhF");
+                    mPlayer.play(currentSong);
                     hasbeenclickedPlay = true;
                     // Toast.makeText(context, currTrack.getSongTitle(), Toast.LENGTH_SHORT).show();
                 }

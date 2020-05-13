@@ -1,39 +1,23 @@
 package com.example.qr;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.widget.TextView;
-import android.widget.SeekBar;
-
 import com.example.qr.Models.Song;
-import com.spotify.sdk.android.authentication.AuthenticationRequest;
-import com.spotify.sdk.android.authentication.AuthenticationResponse;
-import com.spotify.sdk.android.authentication.AuthenticationClient;
-import com.spotify.android.appremote.api.UserApi;
-import com.spotify.android.appremote.api.ContentApi;
-import com.spotify.android.appremote.api.ImagesApi;
-import com.spotify.android.appremote.api.ConnectionParams;
-import com.spotify.android.appremote.api.Connector;
-import com.spotify.protocol.types.PlayerState;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
-import com.spotify.android.appremote.api.PlayerApi;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.annotation.NonNull;
-import android.view.MenuItem;
+import com.spotify.android.appremote.api.PlayerApi;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
 
-import android.content.Intent;
-
-import android.os.Bundle;
-import android.widget.Button;
-import android.view.View;
-
-import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.qr.Models.Track;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
@@ -70,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rvSongs = findViewById(R.id.rvQueue);
         RecyclerView rvUsers = findViewById(R.id.rvUsers);
         btmNav = findViewById(R.id.bottomNav);
+
+        //mPlayer = SpotifyService.mSpotifyAppRemote.getPlayerApi();
+
 
         btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -113,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SpotifyAppRemote.disconnect(SpotifyService.mSpotifyAppRemote);
     }
 }
 

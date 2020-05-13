@@ -1,52 +1,55 @@
 package com.example.qr;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.widget.TextView;
-import android.widget.ImageView;
-
-import com.example.qr.Models.Song;
-import com.spotify.sdk.android.authentication.AuthenticationRequest;
-import com.spotify.sdk.android.authentication.AuthenticationResponse;
-import com.spotify.sdk.android.authentication.AuthenticationClient;
-import com.spotify.android.appremote.api.ConnectionParams;
-import com.spotify.android.appremote.api.Connector;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.annotation.NonNull;
-import android.view.MenuItem;
-
-import android.content.Intent;
 import android.content.Context;
-
-import android.os.Bundle;
-import android.widget.Button;
-import android.view.View;
-
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-import com.example.qr.Adapters.TrackAdapter;
+
+import com.spotify.android.appremote.api.ConnectionParams;
+import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.PlayerApi;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.spotify.protocol.types.PlayerState;
+import com.spotify.sdk.android.authentication.AuthenticationClient;
+import com.spotify.sdk.android.authentication.AuthenticationRequest;
+import com.spotify.sdk.android.authentication.AuthenticationResponse;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SpotifyService extends MainActivity {
+
+    public String url = "https://api.spotify.com/v1/";
+    protected static PlaceHolderApi placeHolderApi;
 
     Context context = SpotifyService.this;
     CharSequence text = "Hello toast!";
     int duration = Toast.LENGTH_SHORT;
 
     protected static SpotifyAppRemote mSpotifyAppRemote;
+    protected PlayerApi playerApi;
+    protected PlayerState playerState;
     TextView tvMoment;
     ImageView ivIcon;
 
     private static final String CLIENT_ID = "c51c441a5bf749a4bf9a1a9b7987173a";
     private static final String REDIRECT_URI = "http://qr.example.com";
     private static final int REQUEST_CODE = 1337;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class SpotifyService extends MainActivity {
         authenticateSpotify();
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -73,13 +77,11 @@ public class SpotifyService extends MainActivity {
                     @Override
                     public void onConnected(SpotifyAppRemote spotifyAppRemote) {
                         mSpotifyAppRemote = spotifyAppRemote;
-
                         Log.d("MainActivity", "Connected! Yay!");
 
                         // Now you can start interacting with App Remote
                         connected();
                     }
-
                     @Override
                     public void onFailure(Throwable throwable) {
                         Log.e("MainActivity", throwable.getMessage(), throwable);
@@ -107,14 +109,41 @@ public class SpotifyService extends MainActivity {
             switch (response.getType()) {
                 // Response was successful and contains auth token
                 case TOKEN:
-                    errorHandling();
-                    authenticateSpotify();
+                    HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+                    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                            .addInterceptor(new Interceptor() {
+                                @NotNull
+                                @Override
+                                public okhttp3.Response intercept(@NotNull Chain chain) throws IOException {
+                                    Request originalRequest = chain.request();
+
+                                    Request newRequest = originalRequest.newBuilder()
+                                            .header("Authorization","Bearer " + response.getAccessToken().toString())
+                                            .build();
+
+                                    return chain.proceed(newRequest);
+                                }
+                            })
+                            .addInterceptor(loggingInterceptor)
+                            .build();
+
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(url)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .client(okHttpClient)
+                            .build();
+
+                    placeHolderApi = retrofit.create(PlaceHolderApi.class);
+
                     startMainActivity();
                     // Handle successful response
                     break;
 
                 // Auth flow returned an error
                 case ERROR:
+                    Log.d("ERROR",response.getError().toString());
                     // Handle error response
                     break;
 

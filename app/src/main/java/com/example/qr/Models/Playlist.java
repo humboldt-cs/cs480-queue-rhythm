@@ -1,25 +1,25 @@
 package com.example.qr.Models;
 
+import com.google.gson.annotations.SerializedName;
 import com.spotify.protocol.types.Image;
 
 import java.util.ArrayList;
 
-public class Album {
-    private String albumType;
-    private ArrayList<Artist> artists;
+public class Playlist {
+    private Boolean collaborative;
     private String href;
     private String id;
     private ArrayList<Image> images;
     private String name;
+    private User owner;
+
+    @SerializedName("public")
+    private Boolean isPublic;
     private String type;
     private String uri;
 
-    public String getAlbumType() {
-        return albumType;
-    }
-
-    public ArrayList<Artist> getArtists() {
-        return artists;
+    public Boolean getCollaborative() {
+        return collaborative;
     }
 
     public String getHref() {
@@ -36,6 +36,14 @@ public class Album {
 
     public String getName() {
         return name;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public Boolean getPublic() {
+        return isPublic;
     }
 
     public String getType() {
